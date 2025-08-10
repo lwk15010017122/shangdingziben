@@ -1,9 +1,27 @@
-script: |
-  docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nest-admin-server:stable
-  docker stop nest-admin-server || true
-  docker rm nest-admin-server || true
-  docker run -d --name nest-admin-server \
-    -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} \
-    --restart=always \
-    -v /path/to/logs:/app/logs \
-    ${{ secrets.DOCKERHUB_USERNAME }}/nest-admin-server:stable
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USERNAME }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nest-admin-server:stable
+            docker stop nest-admin-server || true
+            docker rm nest-admin-server || true
+            docker run -d --name nest-admin-server \
+              -p ${{ secrets.APP_PORT }}:${{ secrets.APP_PORT }} \
+              --restart=always \
+              -v /path/to/logs:/app/logs \
+              ${{ secrets.DOCKERHUB_USERNAME }}/nest-admin-server:stable
