@@ -6,7 +6,7 @@ FROM node:20-slim AS base
 
 ARG PROJECT_DIR
 
-ENV DB_HOST=mysql \
+ENV DB_HOST=host.docker.internal \
     APP_PORT=7001 \
     PNPM_HOME="/pnpm" \
     PATH="$PNPM_HOME:$PATH"
