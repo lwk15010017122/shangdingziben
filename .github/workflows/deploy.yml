@@ -34,4 +34,9 @@ jobs:
             docker rm shangdingziben-app || true
 
             echo "Starting new container..."
-            docker run -d -p 7001:7001 --name shangdingziben-app shangdingziben/shangdingziben-app:$VERSION
+            docker run -d \
+              -p 7001:7001 \
+              --name shangdingziben-app \
+              --restart unless-stopped \
+              --add-host=host.docker.internal:172.17.0.1 \
+              shangdingziben/shangdingziben-app:$VERSION
