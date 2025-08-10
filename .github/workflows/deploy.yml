@@ -20,4 +20,10 @@ jobs:
             cd ${{ secrets.REMOTE_WORKDIR }}
             git reset --hard origin/main
             git pull
-            ls -a
+
+            VERSION=$(date +%Y%m%d%H%M%S)
+
+            docker build -t shangdingziben/shangdingziben-app:$VERSION .
+            docker stop shangdingziben-app || true
+            docker rm shangdingziben-app || true
+            docker run -d -p 7001:7001 --name shangdingziben-app shangdingziben/shangdingziben-app:$VERSION
