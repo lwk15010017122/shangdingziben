@@ -1,10 +1,9 @@
 name: Deploy
 
 on:
-  workflow_run:
-    workflows: [Sync To Gitee]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
