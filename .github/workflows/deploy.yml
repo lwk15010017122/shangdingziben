@@ -18,7 +18,7 @@ jobs:
           key: ${{ secrets.SHANDINGZIBEN }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            cd ${{ secrets.REMOTE_WORKDIR }}
+            cd ${{ secrets.REMOTE_WORKDIR }} // 存变量
             git reset --hard origin/main
             git pull
             pnpm install
