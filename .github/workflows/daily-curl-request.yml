@@ -10,5 +10,4 @@ jobs:
 
     steps:
       - name: Run Curl Request
-        # because: https://docs.render.com/free#spinning-down-on-idle
         run: curl https://nest-admin-093x.onrender.com
