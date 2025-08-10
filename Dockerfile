@@ -52,6 +52,6 @@ EXPOSE $APP_PORT
 
 # CMD ["pnpm", "start"]
 # CMD ["pm2-runtime", "ecosystem.config.js"]
-ENTRYPOINT echo "DB_HOST=$DB_HOST, DB_PORT=$DB_PORT" && ./wait-for-it.sh $DB_HOST:$DB_PORT -- pnpm migration:run && pm2-runtime ecosystem.config.js
+ENTRYPOINT ./wait-for-it.sh 43.130.39.156:3306 -- pnpm migration:run && pm2-runtime ecosystem.config.js
 
 
