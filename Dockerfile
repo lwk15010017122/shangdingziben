@@ -50,6 +50,8 @@ EXPOSE $APP_PORT
 
 # 容器启动时执行的命令，类似npm run start
 
-CMD ["pnpm", "start"]
+# CMD ["pnpm", "start"]
 # CMD ["pm2-runtime", "ecosystem.config.js"]
-# ENTRYPOINT ./wait-for-it.sh $DB_HOST:$DB_PORT -- pnpm migration:run && pm2-runtime ecosystem.config.js
+ENTRYPOINT ./wait-for-it.sh $DB_HOST:$DB_PORT -- pnpm migration:run && pm2-runtime ecosystem.config.js
+
+
