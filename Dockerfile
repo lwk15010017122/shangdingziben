@@ -49,10 +49,7 @@ COPY --from=build $PROJECT_DIR/dist $PROJECT_DIR/dist
 EXPOSE $APP_PORT
 
 # 容器启动时执行的命令，类似npm run start
-
-CMD ["pnpm", "prod"]
+RUN ls -a
+CMD ["pnpm", "start:prod"]
 # CMD ["pm2-runtime", "ecosystem.config.js"]
-# ENTRYPOINT ["sh", "-c", "echo DB_HOST=$DB_HOST, DB_PORT=$DB_PORT; ./wait-for-it.sh $DB_HOST:$DB_PORT -- pnpm migration:run && pm2-runtime ecosystem.config.js 2>&1 | tee /proc/1/fd/1"]
-
-
-
+# ENTRYPOINT ./wait-for-it.sh $DB_HOST:$DB_PORT -- pnpm migration:run && pm2-runtime ecosystem.config.js
