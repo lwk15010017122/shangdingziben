@@ -19,13 +19,12 @@ services:
       - .env
       - .env.production
     environment:
-      - MYSQL_HOST=43.130.39.156
-      - MYSQL_PORT=3306
-      - MYSQL_DATABASE=nest_admin
-      - MYSQL_USERNAME=sdzb
-      - MYSQL_PASSWORD=H2jhrahHHPjcWytT
-      - MYSQL_ROOT_PASSWORD=H2jhrahHHPjcWytT
-      - DB_HOST=mysql
+      - MYSQL_HOST=${DB_HOST}
+      - MYSQL_PORT=${DB_PORT}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USERNAME=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     ports:
       - '${DB_PORT}:3306'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci # 设置utf8字符集
