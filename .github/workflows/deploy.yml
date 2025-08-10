@@ -15,10 +15,10 @@ jobs:
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USERNAME }}
-          key: ${{ secrets.SHANDINGZIBEN }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            cd ${{ secrets.REMOTE_WORKDIR }} // 存变量
+            cd ${{ secrets.REMOTE_WORKDIR }}
             git reset --hard origin/main
             git pull
             pnpm install
