@@ -20,6 +20,7 @@ import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard'
 import { RbacGuard } from './modules/auth/guards/rbac.guard'
 import { ChaincatcherModule } from './modules/chaincatcher/chaincatcher.module'
 import { HealthModule } from './modules/health/health.module'
+import { LiquidationModule } from './modules/liquidation/liquidation.module'
 import { NetdiskModule } from './modules/netdisk/netdisk.module'
 import { SseModule } from './modules/sse/sse.module'
 import { SystemModule } from './modules/system/system.module'
@@ -68,6 +69,7 @@ import { SocketModule } from './socket/socket.module'
     NetdiskModule,
     ChaincatcherModule,
     WechatWebhookModule,
+    LiquidationModule,
 
     // biz
 

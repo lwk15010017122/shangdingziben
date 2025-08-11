@@ -8,21 +8,19 @@ import { Chaincatcher } from '../chaincatcher/chaincatcher.entity'
 @Injectable()
 export class WeChatWebhookService {
   private readonly logger = new Logger(WeChatWebhookService.name)
-  private readonly webhookUrl: string
+  private readonly key: string
+  private readonly szKey: string
 
   constructor(
     private configService: ConfigService,
-        @InjectRepository(Chaincatcher)
-        private readonly chaincatcherRepository: Repository<Chaincatcher>,
+    @InjectRepository(Chaincatcher)
+    private readonly chaincatcherRepository: Repository<Chaincatcher>,
   ) {
-    const key = this.configService.get<string>('WECHAT_BOT_KEY')
-    if (!key) {
-      throw new Error('WECHAT_WEBHOOK_KEY 环境变量未配置')
-    }
-    this.webhookUrl = `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${key}`
+    this.key = this.configService.get<string>('WECHAT_BOT_KEY')
+    this.szKey = this.configService.get<string>('WECHAT_BOT_SZ_KEY')
   }
 
-  async sendText(content: string, id: number): Promise<void> {
+  async sendText(content: string, id?: number): Promise<void> {
     try {
       const data = {
         msgtype: 'markdown_v2',
@@ -30,14 +28,19 @@ export class WeChatWebhookService {
           content,
         },
       }
-      await axios.post(this.webhookUrl, data, {
-        headers: { 'Content-Type': 'application/json' },
-      }).then(async (response) => {
-        // 这里能拿到请求成功的响应
-        console.log('发送成功，响应:', response.data)
+      const webhookKey = id ? this.key : this.szKey
+
+      const response = await axios.post(
+        `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${webhookKey}`,
+        data,
+        { headers: { 'Content-Type': 'application/json' } },
+      )
+
+      this.logger.log(`发送企业微信消息成功: ${content}, 响应: ${JSON.stringify(response.data)}`)
+
+      if (id) {
         await this.chaincatcherRepository.update(id, { msgType: 2 })
-      })
-      this.logger.log(`发送企业微信消息成功: ${content}`)
+      }
     }
     catch (error) {
       this.logger.error('发送企业微信消息失败', error)
