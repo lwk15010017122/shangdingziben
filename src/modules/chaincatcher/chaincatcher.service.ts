@@ -48,7 +48,7 @@ export class ChaincatcherService {
         let chaincatcherId = $(el).find('.article_area .article_left a').attr('href')
         chaincatcherId = chaincatcherId.split('/')[2]
         let content = $(el).find('div.article_content').text()
-        content = content.replace(/ChainCatcher 消息/g, '').trim()
+        content = content.replace(/ChainCatcher 消息，/g, '').trim()
 
         try {
           await this.createChaincatcher({
@@ -68,7 +68,7 @@ export class ChaincatcherService {
     }
   }
 
-  @Cron('*/3 * * * *')
+  //   @Cron('*/3 * * * *')
   async chaincatcherMsg() {
     try {
       const list = await this.ChaincatcherRepository.find({
