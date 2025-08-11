@@ -50,7 +50,7 @@ export class LiquidationService implements OnModuleInit {
 
           // 组装推送内容
           const str
-            = `币安大额爆仓推送\n`
+            = `老师们，币安大额爆仓推送\n`
               + `| 币种 | 方向 | 数量 | 价格 | 金额 |\n`
               + `| :----- | :----: | :----: | :----: | -------: |\n`
               + `| ${sym} | ${direction} | ${order.q} | ${order.p} | ${liquidationAmountUsd.toFixed(2)} USDT |\n`

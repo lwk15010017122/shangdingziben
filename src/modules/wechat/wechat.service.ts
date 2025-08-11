@@ -27,8 +27,11 @@ export class WeChatWebhookService {
         markdown_v2: {
           content,
         },
+        touser: id ? '' : '@all', // 未生效
       }
       const webhookKey = id ? this.key : this.szKey
+
+      console.log(data, '===> data')
 
       const response = await axios.post(
         `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${webhookKey}`,
