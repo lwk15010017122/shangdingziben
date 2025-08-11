@@ -18,6 +18,7 @@ import { TransformInterceptor } from './common/interceptors/transform.intercepto
 import { AuthModule } from './modules/auth/auth.module'
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard'
 import { RbacGuard } from './modules/auth/guards/rbac.guard'
+import { ChaincatcherModule } from './modules/chaincatcher/chaincatcher.module'
 import { HealthModule } from './modules/health/health.module'
 import { NetdiskModule } from './modules/netdisk/netdisk.module'
 import { SseModule } from './modules/sse/sse.module'
@@ -25,6 +26,7 @@ import { SystemModule } from './modules/system/system.module'
 import { TasksModule } from './modules/tasks/tasks.module'
 import { TodoModule } from './modules/todo/todo.module'
 import { ToolsModule } from './modules/tools/tools.module'
+import { WechatWebhookModule } from './modules/wechat/wechat.module'
 import { DatabaseModule } from './shared/database/database.module'
 
 import { SocketModule } from './socket/socket.module'
@@ -64,6 +66,8 @@ import { SocketModule } from './socket/socket.module'
     HealthModule,
     SseModule,
     NetdiskModule,
+    ChaincatcherModule,
+    WechatWebhookModule,
 
     // biz
 
