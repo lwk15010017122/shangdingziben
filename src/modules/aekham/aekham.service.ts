@@ -7,7 +7,7 @@ export class AekhamService {
   constructor(
     private configService: ConfigService,
   ) { }
-  // 获取中心交易所数据
+  // 获取中心交易所
   // @Cron('*/1 * * * *')
   // async getCEX() {
   //     try {
