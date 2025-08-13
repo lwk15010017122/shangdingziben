@@ -20,6 +20,7 @@ import { AuthModule } from './modules/auth/auth.module'
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard'
 import { RbacGuard } from './modules/auth/guards/rbac.guard'
 import { ChaincatcherModule } from './modules/chaincatcher/chaincatcher.module'
+import { CoinglassModule } from './modules/coinglass/coinglass.module'
 import { HealthModule } from './modules/health/health.module'
 import { LiquidationModule } from './modules/liquidation/liquidation.module'
 import { NetdiskModule } from './modules/netdisk/netdisk.module'
@@ -72,6 +73,7 @@ import { SocketModule } from './socket/socket.module'
     WechatWebhookModule,
     LiquidationModule,
     AekhamModule,
+    CoinglassModule,
     // biz
 
     // end biz

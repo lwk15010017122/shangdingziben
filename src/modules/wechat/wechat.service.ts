@@ -20,18 +20,16 @@ export class WeChatWebhookService {
     this.szKey = this.configService.get<string>('WECHAT_BOT_SZ_KEY')
   }
 
-  async sendText(content: string, id?: number): Promise<void> {
+  async sendText(content: string, id?: number, type?: string): Promise<void> {
     try {
       const data = {
-        msgtype: 'markdown_v2',
-        markdown_v2: {
+        msgtype: type || 'markdown_v2',
+        [type || 'markdown_v2']: {
           content,
         },
         touser: id ? '' : '@all', // 未生效
       }
       const webhookKey = id ? this.key : this.szKey
-
-      console.log(data, '===> data')
 
       const response = await axios.post(
         `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${webhookKey}`,
