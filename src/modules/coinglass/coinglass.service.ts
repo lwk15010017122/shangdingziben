@@ -32,7 +32,7 @@ export class CoinglassService {
       if (response.data?.data?.length) {
         // 筛选大额交易
         const bigTx = response.data.data.filter(
-          item => item.amount_usd > 500_000 && item.transfer_type !== 3,
+          item => item.amount_usd > 5000000 && item.transfer_type !== 3,
         )
 
         for (const tx of bigTx) {
