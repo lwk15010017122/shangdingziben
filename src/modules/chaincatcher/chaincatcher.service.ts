@@ -68,7 +68,7 @@ export class ChaincatcherService {
     }
   }
 
-  @Cron('*/3 * * * *')
+  //   @Cron('*/3 * * * *')
   async chaincatcherMsg() {
     try {
       const list = await this.ChaincatcherRepository.find({
