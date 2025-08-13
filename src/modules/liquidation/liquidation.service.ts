@@ -43,7 +43,7 @@ export class LiquidationService implements OnModuleInit {
         const liquidationAmountUsd = Number.parseFloat(order.q) * Number.parseFloat(order.p)
 
         if (liquidationAmountUsd >= this.thresholdUsd) {
-          const direction = order.S === 'BUY' ? '多' : '空'
+          const direction = order.S === 'BUY' ? '空' : '多'
           this.logger.warn(
             `大额爆仓！币种：${sym}，方向：${direction}，数量：${order.q}，价格：${order.p}，金额：${liquidationAmountUsd.toFixed(2)} USD`,
           )
